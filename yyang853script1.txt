@@ -1,0 +1,15 @@
+SHOW DATABASES;
+DROP DATABASE IF EXISTS yyang853assign2db;
+CREATE DATABASE yyang853assign2db;
+USE yyang853assign2db;
+SHOW TABLES;
+CREATE TABLE Product(ProductID VARCHAR(2) NOT NULL,Description VARCHAR(20), Cost FLOAT(8,2),Quantity INT,PRIMARY KEY(ProductID));
+CREATE TABLE Agents(AgentID VARCHAR(2),Firstname VARCHAR(30),Lastname VARCHAR(30),City VARCHAR(15), Percentage INT NOT NULL,PRIMARY KEY(AgentID));
+CREATE TABLE Customer(CustomerID VARCHAR(2),Firstname VARCHAR(30),Lastname VARCHAR(30),City VARCHAR(15),Phonenumber VARCHAR(20),DealerID VARCHAR(2),PRIMARY KEY(CustomerID), FOREIGN KEY(DealerID) REFERENCES Agents(AgentID));
+CREATE TABLE Purchaseinfo(CustomerID VARCHAR(2),ProductID VARCHAR(2),Quantity INT, PRIMARY KEY(CustomerID,ProductID), FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID), FOREIGN KEY(ProductID) REFERENCES Product(ProductID));
+SHOW TABLES;
+GRANT USAGE ON *.* TO 'ta'@'localhost';
+DROP USER 'ta'@'localhost'; 
+CREATE USER 'ta'@'localhost' IDENTIFIED	BY 'cs3319';
+GRANT ALL PRIVILEGES ON	yyang853assign2db.* TO 'ta'@'localhost';
+FLUSH PRIVILEGES;

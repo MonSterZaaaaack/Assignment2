@@ -1,0 +1,35 @@
+USE yyang853assign2db;
+-- Query 1
+SELECT Description FROM Product;
+-- Query 2
+SELECT DISTINCT City FROM Customer;
+-- Query 3
+SELECT * FROM Agents ORDER BY City;
+-- Query 4
+SELECT Firstname,Lastname FROM Customer WHERE City = "Springfield";
+-- Query 5
+SELECT Lastname FROM Customer WHERE DealerID = "11";
+-- Query 6
+SELECT Description FROM Product WHERE Description LIKE "%Pad%" OR Description LIKE "%pad%";
+-- Query 7
+SELECT Lastname,Purchaseinfo.Quantity,Description FROM Customer,Purchaseinfo,Product WHERE Customer.CustomerID = Purchaseinfo.CustomerID AND Product.ProductID = Purchaseinfo.ProductID;
+-- Query 8
+SELECT SUM(Quantity) as "Homer's Total Purchases" FROM Purchaseinfo WHERE CustomerID IN( SELECT CustomerID FROM Customer WHERE Firstname = "Homer");
+-- Query 9
+SELECT(SELECT SUM(Quantity) FROM Purchaseinfo WHERE CustomerID IN( SELECT CustomerID FROM Customer WHERE Firstname = "Homer"))AS "Homer's Total Purchase",
+(SELECT SUM(Quantity) FROM Purchaseinfo WHERE CustomerID IN( SELECT CustomerID FROM Customer WHERE Firstname = "Sideshow"))AS "Sideshow's Total Purchase",
+(SELECT SUM(Quantity) FROM Purchaseinfo WHERE CustomerID IN( SELECT CustomerID FROM Customer WHERE Firstname = "Fred"))AS "Fred's Total Purchase",
+(SELECT SUM(Quantity) FROM Purchaseinfo WHERE CustomerID IN( SELECT CustomerID FROM Customer WHERE Firstname = "Peter"))AS "Peter's Total Purchase";
+-- Query 10
+SELECT Description,Quantity FROM Product WHERE ProductID NOT IN(SELECT ProductID FROM Purchaseinfo);
+-- Query 11
+SELECT Description,Quantity FROM Product WHERE ProductID NOT IN(SELECT ProductID FROM Purchaseinfo WHERE CustomerID IN(SELECT CustomerID FROM Customer WHERE Firstname = "Fred" AND Lastname = "Flintstone"));
+-- Query 12
+SELECT Agents.Firstname,Agents.Lastname,Customer.Firstname,Customer.Lastname FROM Customer,Agents WHERE Agents.AgentID = Customer.DealerID AND Agents.City = Customer.City;
+-- Query 13
+SELECT SUM(Quantity) as "Total knee pads sold"  FROM Purchaseinfo WHERE ProductID = "78";
+-- Query 14
+SELECT Description FROM Product WHERE ProductID IN ( SELECT ProductID FROM Purchaseinfo GROUP BY ProductID HAVING COUNT(ProductID) > 3);
+-- Query 15
+SELECT Firstname,Lastname FROM Agents WHERE AgentID IN (SELECT DealerID FROM Customer WHERE CustomerID IN (SELECT CustomerID FROM Purchaseinfo WHERE ProductID = "78"));
+
