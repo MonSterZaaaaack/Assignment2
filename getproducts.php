@@ -1,4 +1,6 @@
 <?php
+/* make radio buttons for user to choose display products information
+ * in different orders */
 echo "In Which Order you want to see the products?</br>";
 echo '<input type = "radio" name = "ordertype" value = "DesA">';
 echo "Ordered By Description in ascending order"."</br>";

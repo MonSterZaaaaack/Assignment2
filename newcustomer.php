@@ -1,4 +1,6 @@
 <?php
+/* prompt user for the information of the new customer they 
+ * want to add */
 echo "New Customer's firstname is :</br>";
 echo '<input type = "text" name = "firstname">';
 echo "<br>";

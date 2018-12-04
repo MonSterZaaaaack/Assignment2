@@ -6,12 +6,15 @@
 </head>
 <body>
 <?php
+/* connect to database */
 include 'connectdb.php';
 ?>
 <h1>Here are Products information:</h1>
 <ol>
 <?php
+/* read all input from POST */
    $whichorder= $_POST["ordertype"];
+/* choose different orders to display all products' information */
    if($whichorder == "DesA"){
    $query = 'SELECT * FROM Product ORDER BY Description';
    }
@@ -28,6 +31,7 @@ include 'connectdb.php';
     if (!$result) {
          die("database query2 failed.");
      }
+/* print all the information of all products in a given order */
     while ($row=mysqli_fetch_assoc($result)) {
         echo '<li>';
         echo "Product name: ";

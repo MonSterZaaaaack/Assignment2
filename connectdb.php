@@ -1,4 +1,5 @@
 <?php
+/* connect to database */
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "101391";

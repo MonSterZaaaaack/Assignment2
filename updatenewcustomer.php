@@ -6,19 +6,23 @@
 </head>
 <body>
 <?php
+/* connect to database */
 include 'connectdb.php';
 ?>
 <h1>Here is the new customer info:</h1>
 <ol>
 <?php
+/* read input data from POST */
    $Cid= $_POST["customername"];
    $newnumber = $_POST["number"];
+/* update the phone number of a given user */
    $query = 'UPDATE Customer SET Phonenumber = "'.$newnumber.'" WHERE CustomerID = "'.$Cid.'"';
    $result=mysqli_query($connection,$query);
     if (!$result) {
          die("database query2 failed.");
      } 
-   echo "new Phone number added.";
+/* print the new phone number has been updated */
+   echo "new Phone number updated.";
    echo "<br>";
    echo "New Number is : ";
    echo $newnumber;
